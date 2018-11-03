@@ -39,6 +39,5 @@ services:
       - chrome
     build: robot
     
-
 networks:
   selenium-grid:
