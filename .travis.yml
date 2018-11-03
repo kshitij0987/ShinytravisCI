@@ -15,6 +15,7 @@ before_install:
 before_script:
   - docker-compose pull
   - docker-compose build
+  - docker-compose start
 
 script:
   - docker-compose run test-gc
