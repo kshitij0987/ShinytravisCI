@@ -47,3 +47,4 @@ services:
     
 networks:
   selenium-grid:
+    driver: bridge
