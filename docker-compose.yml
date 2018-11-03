@@ -32,7 +32,7 @@ services:
   test-gc:
     container_name: test-gc
     build: robot
-    command: --outputdir /tests/out/ --timestampoutputs tests
+    command: /bin/sleep infinity
     depends_on:
       - hub
       - sampleshinyapp
