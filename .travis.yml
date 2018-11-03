@@ -17,7 +17,7 @@ before_script:
   - docker-compose build
 
 script:
-  - docker-compose run test-gc
+  - docker-compose -p test_gc exec robot tests
 
 after_script:
   - docker-compose down
