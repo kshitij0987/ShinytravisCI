@@ -7,4 +7,4 @@ RUN  pip install -r /tmp/requirements.txt
 # We need wget to set up the PPA and xvfb to have a virtual screen and unzip to install the Chromedriver
 COPY . /tests
 WORKDIR /tests
-ENTRYPOINT [ "robot" ]
+RUN chmod +x wait-for-it.sh

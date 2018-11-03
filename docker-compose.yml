@@ -2,21 +2,23 @@ version: '3.1'
 
 services:
   sampleshinyapp:
-    image: kshitijsrivastava/shinytravisci:1
+    image: kshitijsrivastava/shinytravisci:2
     expose:
       - 3838
     networks:
       - selenium-grid
 
   hub:
-    image: selenium/hub:3.14.0
+    image: selenium/hub:3.141.0
     expose:
       - 4444
     networks:
       - selenium-grid
+    ports:
+      - 4444:4444
 
   chrome:
-    image: selenium/node-chrome:3.14.0
+    image: selenium/node-chrome:3.141.0
     environment:
       - HUB_PORT_4444_TCP_ADDR=hub
       - HUB_PORT_4444_TCP_PORT=4444
@@ -24,16 +26,19 @@ services:
       - hub
     networks:
       - selenium-grid
-
+    ports:
+      - 5555
 
   test-gc:
-    build: robot
-    command: --outputdir /tests/out/ --timestampoutputs tests
-    depends_on:
-      - sampleshinyapp
-      - chrome
     networks:
       - selenium-grid
+    command: /tests/wait-for-it.sh -t 15 chrome:5555 -- robot tests
+    depends_on:
+      - hub
+      - sampleshinyapp
+      - chrome
+    build: robot
+    
 
 networks:
   selenium-grid:
