@@ -2,6 +2,7 @@ version: '3.1'
 
 services:
   sampleshinyapp:
+    container_name: sampleshinyapp
     image: kshitijsrivastava/shinytravisci:1
     expose:
       - 3838
@@ -9,6 +10,7 @@ services:
       - selenium-grid
 
   hub:
+    container_name: hub
     image: selenium/hub:3.14.0
     expose:
       - 4444
@@ -16,6 +18,7 @@ services:
       - selenium-grid
 
   chrome:
+    container_name: chrome
     image: selenium/node-chrome:3.14.0
     environment:
       - HUB_PORT_4444_TCP_ADDR=hub
@@ -27,6 +30,7 @@ services:
 
 
   test-gc:
+    container_name: test-gc
     build: robot
     command: --outputdir /tests/out/ --timestampoutputs tests
     depends_on:
