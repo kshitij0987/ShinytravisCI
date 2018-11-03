@@ -16,6 +16,12 @@ services:
       - selenium-grid
     ports:
       - 4444:4444
+    healthcheck:
+      test: curl -f -s http://localhost:4444/wd/hub || exit 1
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
 
   chrome:
     image: selenium/node-chrome:3.141.0
@@ -32,7 +38,7 @@ services:
   test-gc:
     networks:
       - selenium-grid
-    command: /tests/wait-for-it.sh -t 15 chrome:5555 -- robot tests
+    command: --outputdir /tests/out/ --timestampoutputs tests
     depends_on:
       - hub
       - sampleshinyapp
