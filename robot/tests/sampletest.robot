@@ -7,6 +7,7 @@ ${SELENIUM} =  http://hub:4444/wd/hub
 
 *** Test Cases ***
 Sample app Test
+    Sleep  20s
     Open Browser  http://sampleshinyapp:3838/shinyapp/  chrome  remote_url=${SELENIUM}
     Sleep  5s
     Click Element  xpath=html/body/div[1]/div/div[1]/form/div/span/span[3]
