@@ -34,6 +34,7 @@ services:
     build: robot
     command: --outputdir /tests/out/ --timestampoutputs tests
     depends_on:
+      - hub
       - sampleshinyapp
       - chrome
     networks:
