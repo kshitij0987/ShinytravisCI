@@ -16,7 +16,7 @@ services:
       - selenium-grid
 
   chrome:
-    image: selenium/node-chrome-debug:3.14.0
+    image: selenium/node-chrome:3.14.0
     environment:
       - HUB_PORT_4444_TCP_ADDR=hub
       - HUB_PORT_4444_TCP_PORT=4444
